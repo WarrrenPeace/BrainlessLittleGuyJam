@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class LittleGuyMovement : MonoBehaviour
+public class BasicEnemyMovement : MonoBehaviour
 {
     Vector2 moveDir;
     Rigidbody2D RB;
     SpriteRenderer SR;
     Animator AM;    
     
-    private Vector2 target;
+    [SerializeField] private Transform target;
     bool isMovingToTarget = false;
     private Vector2 lastMoveDirection; 
     private bool isFacingLeft = true;
@@ -15,7 +15,7 @@ public class LittleGuyMovement : MonoBehaviour
     [SerializeField] float movementSpeed = 10;
     [SerializeField] float desiredDistanceToTarget = 0.25f;
 
-    public void SetTargetLocation(Vector2 loc)
+    public void SetTargetLocation(Transform loc)
     {
         isMovingToTarget = true;
         target = loc;
@@ -25,22 +25,26 @@ public class LittleGuyMovement : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
-        target = transform.position;
+        SetTargetLocation(GameObject.FindWithTag("Player").transform);
     }
     void Update()
     {
-        if(isMovingToTarget) {Move();}
+        if(target) {Move();}
         
         Animate();
     }
     void Move()
     {
         //Store last direction
-        lastMoveDirection = moveDir.normalized;
-        
-        if(Vector2.Distance(transform.position, target) > desiredDistanceToTarget)
+        if(moveDir != Vector2.zero)
         {
-            moveDir = target - (Vector2)transform.position;
+            lastMoveDirection = moveDir.normalized;
+        }
+        
+        
+        if(Vector2.Distance(transform.position, target.position) > desiredDistanceToTarget)
+        {
+            moveDir = (Vector2)target.position - (Vector2)transform.position;
             if(moveDir.x < 0) {SR.flipX = true; isFacingLeft = true;}
             if(moveDir.x > 0) {SR.flipX = false; isFacingLeft = false;}
         

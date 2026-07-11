@@ -37,7 +37,6 @@ public class Commander : MonoBehaviour
             }
             
 
-            //AS.PlayOneShot(orderLittleGuy,PlayerPrefs.GetFloat("FXVolume"));	
 		}
 		else if (currentMouse.leftButton.wasReleasedThisFrame)
 		{

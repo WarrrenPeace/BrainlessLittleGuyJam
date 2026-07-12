@@ -63,8 +63,23 @@ public class LittleGuyMovement : MonoBehaviour
     {
         AM.SetFloat("MoveX",moveDir.normalized.x);
         AM.SetFloat("MoveY",moveDir.normalized.y);
-        AM.SetFloat("LastMoveX",lastMoveDirection.x);
-        AM.SetFloat("LastMoveY",lastMoveDirection.y);
+        if(!isMovingToTarget)
+        {
+            AM.SetFloat("LastMoveX",lastMoveDirection.x);
+            AM.SetFloat("LastMoveY",lastMoveDirection.y);
+        }
         AM.SetFloat("MoveMagnitude",moveDir.normalized.magnitude);
+    }
+    public void RotateTowardsTarget(Vector2 targetPos)
+    {
+        //Very briefly stop player from moving
+
+        //Face player towards target (pos)
+        lastMoveDirection = (targetPos - (Vector2)transform.position).normalized;
+        if(lastMoveDirection.x < 0) {SR.flipX = true; isFacingLeft = true;}
+        if(lastMoveDirection.x > 0) {SR.flipX = false; isFacingLeft = false;}
+
+        //Play animation
+        AM.SetTrigger("Attack");
     }
 }

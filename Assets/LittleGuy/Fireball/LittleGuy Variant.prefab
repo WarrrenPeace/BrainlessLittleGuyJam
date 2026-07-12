@@ -87,11 +87,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   state: 0
   attackCooldown: 1
-  attackDamage: 5
+  attackDamage: 10
   animationAttackDelay: 0.6
   target: {fileID: 0}
   targetInRange: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  detectionRadius: 2
+  detectionRadius: 1

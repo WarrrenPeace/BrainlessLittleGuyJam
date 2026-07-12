@@ -42,7 +42,7 @@ public class Commander : MonoBehaviour
 		{
             if(target)
             {
-                target.GetComponent<LittleGuyMovement>().SetTargetLocation(transform.position);
+                target.GetComponent<LittleGuyMovement>()?.SetTargetLocation(transform.position);
                 AS.PlayOneShot(orderLittleGuy,PlayerPrefs.GetFloat("FXVolume",1));
                 GetComponent<PlayerMovement>()?.StopToInteract(target.transform.position);
             }

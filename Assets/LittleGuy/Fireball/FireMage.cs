@@ -7,6 +7,7 @@ public class FireMage : MonoBehaviour
     public State state;
     SpriteRenderer SR;
     Animator AM;   
+    LittleGuyMovement LGM;
 
     [SerializeField] float attackCooldown = 1.5f;
     [SerializeField] int attackDamage = 5;
@@ -21,6 +22,7 @@ public class FireMage : MonoBehaviour
     {
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
+        LGM = GetComponent<LittleGuyMovement>();
         InvokeRepeating("AutoFindTarget",0.5f,1);
     }
     void ChangeState(State stateToChangeTo)
@@ -113,7 +115,7 @@ public class FireMage : MonoBehaviour
         else
         {
             attackCooldown = 1.5f;
-            AM.SetTrigger("Attack");
+            LGM?.RotateTowardsTarget(target.position);
             Invoke("AnimationAttackDelay",animationAttackDelay);
             
         }

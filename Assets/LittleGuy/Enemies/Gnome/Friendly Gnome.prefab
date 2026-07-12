@@ -62,7 +62,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -114,7 +114,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 56472112451857020, guid: 8d8fdc724947b504f93c81b192fed002, type: 3}
-  m_Color: {r: 1, g: 0.36320752, b: 0.94009364, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 5
+  MaxHP: 3
   HP: 0
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &6225601188474956124
@@ -213,16 +213,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   state: 0
   movementSpeed: 2
-  desiredDistanceToTarget: 0.25
-  attackCooldown: 1.5
-  attackDamage: 5
+  desiredDistanceToTarget: 0.3
+  attackCooldown: 0.75
+  attackDamage: 1
   animationAttackDelay: 0.55
   target: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  detectionRadius: 10
+  detectionRadius: 1
   targetPlayerInstantly: 0
+  isEvil: 0
+  boredom: 2
 --- !u!114 &7316474996759172592
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -7,7 +7,6 @@ public class LineSpawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] private float spawnDelay = 0.5f;
     [SerializeField] private float spawnFrequency = 0.5f;
-    [SerializeField] private float lineHeight;
     [SerializeField] private int amountForWave = 10;
     
     void Start()

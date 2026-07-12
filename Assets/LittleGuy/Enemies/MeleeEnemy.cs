@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MeleeEnemy : MonoBehaviour
 {
-    public enum State {Idle, Run, WindUp, Attack}
+    public enum State {Idle, March, Run, WindUp, Attack}
     public State state;
     Vector2 moveDir;
     Vector2 lastMoveDirection; 
@@ -24,6 +24,9 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private float detectionRadius = 1;
     public bool targetPlayerInstantly = false;
+    public bool isEvil = true;
+    private float boredomTimer = 1.5f;
+    [SerializeField] private float boredom = 0;
 
 
     
@@ -33,7 +36,8 @@ public class MeleeEnemy : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
         if(targetPlayerInstantly) {SetTarget(GameObject.FindGameObjectWithTag("Player").transform);} //Bug if player is dead
-        InvokeRepeating("AutoFindTarget",0.5f,1);
+        InvokeRepeating("AutoFindTarget",0.5f,0.2f);
+        ResumeTravelToGoal();
     }
     void AutoFindTarget()
     {
@@ -41,26 +45,33 @@ public class MeleeEnemy : MonoBehaviour
         {
             SetTarget(FindTarget());
         }
-        
     }
     public void SetTarget(Transform targetTransform)
     {
-        if(!targetInRange) {ChangeState(State.Run);}
-        target = targetTransform;
+        if(targetTransform != null)
+        {
+            if(!targetInRange) {ChangeState(State.Run);}
+            target = targetTransform;
+        }
     }
     void ChangeState(State stateToChangeTo)
     {
+        boredom = boredomTimer;
         state = stateToChangeTo;
+        Debug.Log(state);
     }
     void Update()
     {
         DistanceToTargetCheck();
         switch (state)
         {
-            case State.Idle: //When enemy spawns in
+            case State.Idle: //Standing still
                 Idle();
                 break;
-            case State.Run: //Enemy running
+                case State.March: //Running to opposite side
+                March();
+                break;
+            case State.Run: //Enemy running towards enemy
                 Move();
                 break;
             case State.WindUp: //Enemy Winding up attack, lead to attack
@@ -86,6 +97,8 @@ public class MeleeEnemy : MonoBehaviour
                 //New closer Target
                 closestDistance = Vector2.Distance(transform.position,hit.transform.position);
                 tempTarget = hit.transform;
+                Debug.Log(tempTarget.gameObject.layer + " Targeted by " + gameObject.layer);
+                
             }
         }
 
@@ -94,13 +107,27 @@ public class MeleeEnemy : MonoBehaviour
     }
     void Idle()
     {
-        
+        //Timer here to start marching again
+        if(boredom > 0)
+        {
+            boredom -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            Debug.Log("Start March!");
+            ResumeTravelToGoal();
+        }
+    }
+    void March()
+    {
+        if(moveDir.x < 0) {SR.flipX = true;}
+        if(moveDir.x > 0) {SR.flipX = false;}
     }
     void DistanceToTargetCheck()
     {
         if(!target)
         {
-            if(state != State.Idle) {StopMovement();}
+            if(state != State.Idle && state != State.March) {StopMovement();}
             
             return;
         }
@@ -130,8 +157,8 @@ public class MeleeEnemy : MonoBehaviour
     {
         if(!target)
         {
-            Debug.Log(name + "Has no target");
-            moveDir = Vector2.zero;
+            if(moveDir.x < 0) {SR.flipX = true;}
+            if(moveDir.x > 0) {SR.flipX = false;}
             return;
         }
 
@@ -165,7 +192,7 @@ public class MeleeEnemy : MonoBehaviour
         }
         else
         {
-            attackCooldown = 1.5f;
+            attackCooldown = .75f;
             AM.SetTrigger("Attack");
             Invoke("AnimationAttackDelay",animationAttackDelay);
             
@@ -184,8 +211,11 @@ public class MeleeEnemy : MonoBehaviour
             case State.Idle: //When enemy spawns in
                 //Idle();
                 break;
-            case State.Run: //Enemy dciding what state to enter
+            case State.March: //When enemy spawns in
                 RB.AddForce(moveDir.normalized * movementSpeed);
+                break;
+            case State.Run: //Enemy dciding what state to enter
+                RB.AddForce(moveDir.normalized * movementSpeed * 2);
                 break;
             case State.WindUp: //Enemy winding up attack, lead to attack
                 //WindUp();
@@ -217,7 +247,21 @@ public class MeleeEnemy : MonoBehaviour
     }
     void StopMovement()
     {
+        Debug.Log("Stop");
         ChangeState(State.Idle);
         moveDir = Vector2.zero;
+    }
+    void ResumeTravelToGoal() //After break of having no target continue traveling to respective side of screen
+    {
+        ChangeState(State.March);
+        if(isEvil)
+        {
+            moveDir = -Vector2.right;
+        }
+        else
+        {
+            moveDir = Vector2.right;
+        }
+        
     }
 }

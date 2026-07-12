@@ -62,7 +62,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 5
+  MaxHP: 3
   HP: 0
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &2851871034528463569
@@ -213,16 +213,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   state: 0
   movementSpeed: 2
-  desiredDistanceToTarget: 0.25
-  attackCooldown: 1.5
-  attackDamage: 5
+  desiredDistanceToTarget: 0.3
+  attackCooldown: 0.75
+  attackDamage: 1
   animationAttackDelay: 0.55
   target: {fileID: 0}
   targetLayer:
     serializedVersion: 2
     m_Bits: 64
-  detectionRadius: 10
+  detectionRadius: 1
   targetPlayerInstantly: 0
+  isEvil: 1
+  boredom: 2
 --- !u!114 &3337400890492058364
 MonoBehaviour:
   m_ObjectHideFlags: 0

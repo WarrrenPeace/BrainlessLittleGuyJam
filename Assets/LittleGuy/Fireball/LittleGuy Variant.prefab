@@ -8,13 +8,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: movementSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: movementSpeedFollower
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: IgnoreWhileFollowing.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.577
       objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.35888
+      value: 0.412
       objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -56,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -5415303517535880888, guid: 2122167a441a8164ba9882d309f98411, type: 3}
+    - target: {fileID: 5001436379015211345, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_Name
       value: LittleGuy Variant
@@ -87,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   state: 0
   attackCooldown: 1
-  attackDamage: 10
+  attackDamage: 5
   animationAttackDelay: 0.6
   target: {fileID: 0}
   targetInRange: 0

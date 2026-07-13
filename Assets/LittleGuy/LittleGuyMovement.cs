@@ -7,18 +7,35 @@ public class LittleGuyMovement : MonoBehaviour
     SpriteRenderer SR;
     Animator AM;    
     
-    private Vector2 target;
+    [SerializeField] private Vector2 target;
+    [SerializeField] private Transform persistantTarget;
     bool isMovingToTarget = false;
     private Vector2 lastMoveDirection; 
     private bool isFacingLeft = true;
 
     [SerializeField] float movementSpeed = 10;
+    [SerializeField] float movementSpeedFollower = 10;
     [SerializeField] float desiredDistanceToTarget = 0.25f;
+    [SerializeField] LayerMask IgnoreWhileFollowing;
 
-    public void SetTargetLocation(Vector2 loc)
+    public void SetTargetLocation(Vector2 PosTarget)
+    {
+        if(PosTarget != null)
+        {
+            isMovingToTarget = true;
+            target = PosTarget;
+            GetComponent<Rigidbody2D>().excludeLayers = IgnoreWhileFollowing;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().excludeLayers = 0;
+        }
+        
+    }
+    public void SetFollower(Transform Transtarget)
     {
         isMovingToTarget = true;
-        target = loc;
+        persistantTarget = Transtarget;
     }
     void Start()
     {
@@ -29,7 +46,17 @@ public class LittleGuyMovement : MonoBehaviour
     }
     void Update()
     {
-        if(isMovingToTarget) {Move();}
+        if(persistantTarget != null)
+        {
+            CheckDistanceToFollowerPos();
+            if(isMovingToTarget)  {MoveAsFollower();}
+        }
+        if(persistantTarget == null)
+        {
+            if(isMovingToTarget) Move();
+        }
+        
+        
         
         Animate();
     }
@@ -52,10 +79,44 @@ public class LittleGuyMovement : MonoBehaviour
             moveDir = Vector2.zero;
         }
     }
+    void MoveAsFollower()
+    {
+        //Store last direction
+        lastMoveDirection = moveDir.normalized;
+        
+        if(Vector2.Distance(transform.position, persistantTarget.position) > desiredDistanceToTarget)
+        {
+            moveDir = (Vector2)persistantTarget.position - (Vector2)transform.position;
+            if(moveDir.x < 0) {SR.flipX = true; isFacingLeft = true;}
+            if(moveDir.x > 0) {SR.flipX = false; isFacingLeft = false;}
+        
+            
+        }
+        else
+        {
+            isMovingToTarget = false;
+            moveDir = Vector2.zero;
+        }
+    }
+    void CheckDistanceToFollowerPos()
+    {
+        if(Vector2.Distance(transform.position, persistantTarget.position) > desiredDistanceToTarget)
+        {
+            isMovingToTarget = true;
+        }
+    }
 
     void FixedUpdate()
     {
-        RB.AddForce(moveDir.normalized * movementSpeed);
+        if(persistantTarget)
+        {
+            RB.AddForce(moveDir.normalized * movementSpeedFollower);
+        }
+        else
+        {
+            RB.AddForce(moveDir.normalized * movementSpeed);
+        }
+        
     }
 
     
@@ -81,5 +142,10 @@ public class LittleGuyMovement : MonoBehaviour
 
         //Play animation
         AM.SetTrigger("Attack");
+    }
+    public bool IsFollower()
+    {
+        if(persistantTarget) {return true;}
+        else {return false;}
     }
 }

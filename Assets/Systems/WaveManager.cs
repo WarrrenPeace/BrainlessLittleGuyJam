@@ -8,23 +8,25 @@ public class WaveManager : MonoBehaviour
     public static WaveManager instance;
     public event Action WaveStarted;
     public event Action WaveEnded;
+    GoblinSpawner GS;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] private float spawnDelay = 0.5f;
     [SerializeField] private float spawnFrequency = 0.5f;
     [SerializeField] private float spawnRadius;
-    [SerializeField] private int amountForWave;
+    private int amountForWave = 4;
 
     [Header("Wave")]
-    private int wave = 1;
+    [SerializeField] private int wave = 1;
     private bool isWaveStarted = false;
     private bool isWaveTimerStarted = false;
-    private float setTimebetweenWaves = 4;
+    [SerializeField] private float setTimebetweenWaves = 4;
     private float timebetweenWaves;
 
     public List<GameObject> enemiesInCurrentWave;
     void Awake()
     {
         instance = this;
+        GS = GetComponent<GoblinSpawner>();
     }
     void Start()
     {
@@ -94,6 +96,9 @@ public class WaveManager : MonoBehaviour
         CancelInvoke("SpawnEnemiesOverTime");
         timebetweenWaves = setTimebetweenWaves;
         isWaveTimerStarted = true;
+
+        //Spawn a new friendly gnome
+        GS.SpawnGnomeAfterWave();
     }
 
     void SpawnEnemiesOverTime()
@@ -109,8 +114,7 @@ public class WaveManager : MonoBehaviour
         if(enemy != null)
         {
             enemiesInCurrentWave.Add(Instantiate(enemy,GetRandomPointAroundScreen(spawnRadius),quaternion.identity));
-        }
-        
+        } 
     }
     Vector2 GetRandomPointAroundScreen(float radius)
     {

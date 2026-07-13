@@ -17,6 +17,10 @@ public class GoblinSpawner : MonoBehaviour
         InvokeRepeating("SpawnWave",spawnDelay,spawnFrequency);
         //SpawnWave();
     }
+    public void SpawnGnomeAfterWave()
+    {
+        SpawnEnemyToAttackPlayer(enemyPrefab);
+    }
 
     void SpawnWave()
     {
@@ -24,6 +28,10 @@ public class GoblinSpawner : MonoBehaviour
         {
             amountForWave --;
             SpawnEnemyToAttackPlayer(enemyPrefab);
+        }
+        else
+        {
+            CancelInvoke("SpawnWave");
         }
     }
     void SpawnEnemyToAttackPlayer(GameObject enemy)

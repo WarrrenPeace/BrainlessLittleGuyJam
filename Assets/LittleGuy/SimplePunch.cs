@@ -1,7 +1,6 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireMage : MonoBehaviour
+public class SimplePunch : MonoBehaviour
 {
     public enum State {Idle, Attack}
     public State state;
@@ -9,21 +8,21 @@ public class FireMage : MonoBehaviour
     Animator AM;   
     LittleGuyMovement LGM;
 
-    [SerializeField] float attackCooldown = 1.5f;
-    [SerializeField] int attackDamage = 5;
+    [SerializeField] float attackCooldown = .75f;
+    [SerializeField] int attackDamage = 10;
     [SerializeField] float animationAttackDelay = 0.6f;
 
     [Header("Targeting")]
     [SerializeField] private Transform target;    
     [SerializeField] private bool targetInRange = false;
     [SerializeField] private LayerMask targetLayer;
-    [SerializeField] private float detectionRadius = 1;
+    [SerializeField] private float detectionRadius = 0.75f;
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
         LGM = GetComponent<LittleGuyMovement>();
-        InvokeRepeating("AutoFindTarget",0.5f,1);
+        InvokeRepeating("AutoFindTarget",1f,0.25f);
     }
     void ChangeState(State stateToChangeTo)
     {

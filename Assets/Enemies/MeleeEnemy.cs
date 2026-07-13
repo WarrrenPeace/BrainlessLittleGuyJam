@@ -14,7 +14,7 @@ public class MeleeEnemy : MonoBehaviour
     [Header("Stats")]
     [SerializeField] float movementSpeed = 10;
     [SerializeField] float desiredDistanceToTarget = 0.25f;
-    [SerializeField] float attackCooldown = 1.5f;
+    [SerializeField] float attackCooldown = 1f;
     [SerializeField] int attackDamage = 5;
     [SerializeField] float animationAttackDelay = 0.6f;
 
@@ -33,7 +33,7 @@ public class MeleeEnemy : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
         if(targetPlayerInstantly) {SetTarget(GameObject.FindGameObjectWithTag("Player").transform);} //Bug if player is dead
-        InvokeRepeating("AutoFindTarget",0.5f,1);
+        InvokeRepeating("AutoFindTarget",0.5f,0.4f);
     }
     void AutoFindTarget()
     {
@@ -165,7 +165,7 @@ public class MeleeEnemy : MonoBehaviour
         }
         else
         {
-            attackCooldown = 1.5f;
+            attackCooldown = 1f;
             AM.SetTrigger("Attack");
             Invoke("AnimationAttackDelay",animationAttackDelay);
             

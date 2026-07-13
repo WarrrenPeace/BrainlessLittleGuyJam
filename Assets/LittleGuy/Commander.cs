@@ -49,6 +49,11 @@ public class Commander : MonoBehaviour
 		{
             if(target)
             {
+                if(target.tag == "Player")
+                {
+                    
+                }
+                else
                 DetermineEligibleTower(target.transform);
                 //Might return in method above if it fails, so this below wont run
                 AS.PlayOneShot(orderLittleGuy,PlayerPrefs.GetFloat("FXVolume",1));
@@ -68,6 +73,11 @@ public class Commander : MonoBehaviour
             if(Followers.Count + 1 <= MaxFollowers)
             {
                 AssignTowerToFollowerSlot(targetTower);
+            }
+            else
+            {
+                //Tell tower to move to your location instead
+                targetTower.GetComponent<LittleGuyMovement>()?.SetTargetLocation(transform.position);
             }
         }
         UpdateCircleFormation(); //Update circle when removing or adding followers
@@ -100,7 +110,7 @@ public class Commander : MonoBehaviour
 
         for (int i = 0; i < FollowPoints.Count; i++)
         {
-            float angle = i * angleStep;
+            float angle = i * angleStep + 55;
             
             // Calculate position in local space (relative to player)
             float x = Mathf.Cos(angle) * radius;

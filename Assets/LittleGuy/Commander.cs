@@ -1,10 +1,11 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class Commander : MonoBehaviour
 {
+    public static Commander instance;
     private Camera cam;
     public LayerMask commandLayerMask;
 
@@ -22,8 +23,8 @@ public class Commander : MonoBehaviour
     
     void Awake()
     {
+        instance = this;
         cam = Camera.main;
-        
     }
     void Start()
     {
@@ -47,42 +48,75 @@ public class Commander : MonoBehaviour
 		}
 		else if (currentMouse.leftButton.wasReleasedThisFrame)
 		{
-            if(target)
+            if(!EventSystem.current.IsPointerOverGameObject())
             {
-                if(target.tag == "Player")
+                if(target)
                 {
-                    
+                    if(target.tag == "Player")
+                    {
+
+                    }
+                    else //WHAT HAPPENS IF YOU CLICK ON A FRIENDLY GNOME!!!
+                    DetermineEligibleTower(target.transform);
+                    //Might return in method above if it fails, so this below wont run
+                    AS.PlayOneShot(orderLittleGuy,PlayerPrefs.GetFloat("FXVolume",1));
+                    GetComponent<PlayerMovement>()?.StopToInteract(target.transform.position);
                 }
-                else
-                DetermineEligibleTower(target.transform);
-                //Might return in method above if it fails, so this below wont run
-                AS.PlayOneShot(orderLittleGuy,PlayerPrefs.GetFloat("FXVolume",1));
-                GetComponent<PlayerMovement>()?.StopToInteract(target.transform.position);
+			    return;
             }
-			return;
+            
 		}
 	}
-    void DetermineEligibleTower(Transform targetTower)
+    void DetermineEligibleTower(Transform targetGnome)
     {
-        if(targetTower.GetComponent<LittleGuyMovement>().IsFollower())
+        //If clicking a Gnome that can be upgraded, Show menu for possible upgrades
+        if(!targetGnome.GetComponent<HappyGnome>().HasThisGnomeLearnedASpell())
         {
-            RemoveTowerAsFollowerSlot(targetTower);
+            //Prompt player with upgrade menu
+            UpgradeManager.instance.ToggleUpgradeMenu(true);
+            UpgradeManager.instance.PopulateUpgradeOptionsForGnome(targetGnome.GetComponent<HappyGnome>());
+            //Selecting option from upgrade menu will force gnome to begin "researching" aka learning the spell you picked
         }
         else
         {
-            if(Followers.Count + 1 <= MaxFollowers)
+            //If Gnome is already upgraded clicking them will toggle them to follow you or not to
+            //Meanwhile they will just idle and cast magic at nearby enemies
+            if(targetGnome.GetComponent<LittleGuyMovement>().IsFollower())
             {
-                AssignTowerToFollowerSlot(targetTower);
+                RemoveGnomeAsFollowerSlot(targetGnome);
             }
             else
             {
-                //Tell tower to move to your location instead
-                targetTower.GetComponent<LittleGuyMovement>()?.SetTargetLocation(transform.position);
+                AddNewGnomeToFollowers(targetGnome);
             }
+            
         }
+
+        
+
+        //if(targetGnome.GetComponent<LittleGuyMovement>().IsFollower())
+        //{
+        //    RemoveTowerAsFollowerSlot(targetGnome);
+        //}
+        //else
+        //{
+        //    if(Followers.Count + 1 <= MaxFollowers)
+        //    {
+        //        AddNewGnomeToFollowers(targetGnome);
+        //    }
+        //    else
+        //    {
+        //        //Tell tower to move to your location instead
+        //        targetGnome.GetComponent<LittleGuyMovement>()?.SetTargetLocation(transform.position);
+        //    }
+        //}
         UpdateCircleFormation(); //Update circle when removing or adding followers
     }
-    void AssignTowerToFollowerSlot(Transform targetTower)
+    public void AddNewGnomeToFollowers(Transform Gnome)
+    {
+        AssignGnomeToFollowerSlot(Gnome);
+    }
+    void AssignGnomeToFollowerSlot(Transform targetTower)
     {
         //Add new transform then assign tower to it
         Transform temp = Instantiate(FollowerSlotPrefab,transform).transform;
@@ -90,7 +124,8 @@ public class Commander : MonoBehaviour
         targetTower.GetComponent<LittleGuyMovement>()?.SetFollower(temp);
         Followers.Add(targetTower);
     }
-    void RemoveTowerAsFollowerSlot(Transform targetTower)
+    public void ThisGnomeDied(Transform Gnome) {RemoveGnomeAsFollowerSlot(Gnome);}
+    void RemoveGnomeAsFollowerSlot(Transform targetTower)
     {
         //Tower no longer follows empty
         FollowPoints[Followers.IndexOf(targetTower)].transform.parent = null;
@@ -111,11 +146,9 @@ public class Commander : MonoBehaviour
         for (int i = 0; i < FollowPoints.Count; i++)
         {
             float angle = i * angleStep + 55;
-            
-            // Calculate position in local space (relative to player)
+        
             float x = Mathf.Cos(angle) * radius;
             float y = Mathf.Sin(angle) * radius;
-
             FollowPoints[i].localPosition = new Vector3(x, y, 0);
         }
     }

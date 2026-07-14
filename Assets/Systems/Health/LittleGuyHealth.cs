@@ -7,4 +7,12 @@ public class LittleGuyHealth : Health
         HealthSetup();
         HP = MaxHP;
     }
+    public override void OnDeath()
+    {
+        if(GetComponent<LittleGuyMovement>().IsFollower())
+        {
+            //Tell commander to remove empty follow object
+            Commander.instance.ThisGnomeDied(transform);
+        }
+    }
 }

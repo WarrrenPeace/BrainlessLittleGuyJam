@@ -24,6 +24,7 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private float detectionRadius = 1;
     public bool targetPlayerInstantly = false;
+    bool canMove = true;
 
 
     
@@ -167,6 +168,8 @@ public class MeleeEnemy : MonoBehaviour
         {
             attackCooldown = 1f;
             AM.SetTrigger("Attack");
+            canMove = false;
+            Invoke("CanMoveAgain",0.5f);
             Invoke("AnimationAttackDelay",animationAttackDelay);
             
         }
@@ -185,7 +188,7 @@ public class MeleeEnemy : MonoBehaviour
                 //Idle();
                 break;
             case State.Run: //Enemy dciding what state to enter
-                RB.AddForce(moveDir.normalized * movementSpeed);
+                if(canMove){RB.AddForce(moveDir.normalized * movementSpeed);}
                 break;
             case State.WindUp: //Enemy winding up attack, lead to attack
                 //WindUp();
@@ -219,5 +222,9 @@ public class MeleeEnemy : MonoBehaviour
     {
         ChangeState(State.Idle);
         moveDir = Vector2.zero;
+    }
+    void CanMoveAgain()
+    {
+        canMove = true;
     }
 }

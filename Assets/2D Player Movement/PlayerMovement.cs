@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingLeft = true;
 
     [SerializeField] float movementSpeed = 15;
-    // Update is called once per frame
+    bool canMove = true;
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
@@ -32,7 +32,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate()
     {
-        RB.AddForce(input.normalized * movementSpeed);
+        if(canMove)
+        {RB.AddForce(input.normalized * movementSpeed);}
+        
     }
     void Update()
     {
@@ -49,7 +51,8 @@ public class PlayerMovement : MonoBehaviour
     public void StopToInteract(Vector2 targetPos)
     {
         //Very briefly stop player from moving
-
+        canMove = false;
+        Invoke("CanMoveAgain",0.25f);
         //Face player towards target (pos)
         lastMoveDirection = (targetPos - (Vector2)transform.position).normalized;
         if(lastMoveDirection.x < 0) {SR.flipX = true; isFacingLeft = true;}
@@ -57,5 +60,9 @@ public class PlayerMovement : MonoBehaviour
 
         //Play animation
         AM.SetTrigger("Interact");
+    }
+    void CanMoveAgain()
+    {
+        canMove = true;
     }
 }

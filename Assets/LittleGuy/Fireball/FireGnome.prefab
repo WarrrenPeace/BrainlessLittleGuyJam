@@ -72,9 +72,13 @@ PrefabInstance:
       propertyPath: m_ExcludeLayers.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 6200538818264612612, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: hasBeenUpgraded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_Name
-      value: LittleGuy Variant
+      value: FireGnome
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -17,6 +17,7 @@ public class LittleGuyMovement : MonoBehaviour
     [SerializeField] float movementSpeedFollower = 10;
     [SerializeField] float desiredDistanceToTarget = 0.25f;
     [SerializeField] LayerMask IgnoreWhileFollowing;
+    bool canMove = true;
 
     public void SetTargetLocation(Vector2 PosTarget)
     {
@@ -108,14 +109,18 @@ public class LittleGuyMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(persistantTarget)
+        if(canMove)
         {
-            RB.AddForce(moveDir.normalized * movementSpeedFollower);
+            if(persistantTarget)
+            {
+                RB.AddForce(moveDir.normalized * movementSpeedFollower);
+            }
+            else
+            {
+                RB.AddForce(moveDir.normalized * movementSpeed);
+            }
         }
-        else
-        {
-            RB.AddForce(moveDir.normalized * movementSpeed);
-        }
+        
         
     }
 
@@ -133,8 +138,9 @@ public class LittleGuyMovement : MonoBehaviour
     }
     public void RotateTowardsTarget(Vector2 targetPos)
     {
-        //Very briefly stop player from moving
-
+        //Very briefly stop Gnome from moving
+        CantMoveAfterAttack();
+        
         //Face player towards target (pos)
         lastMoveDirection = (targetPos - (Vector2)transform.position).normalized;
         if(lastMoveDirection.x < 0) {SR.flipX = true; isFacingLeft = true;}
@@ -142,6 +148,15 @@ public class LittleGuyMovement : MonoBehaviour
 
         //Play animation
         AM.SetTrigger("Attack");
+    }
+    void CantMoveAfterAttack()
+    {
+        canMove = false;
+        Invoke("CanMoveAgain",0.15f);
+    }
+    void CanMoveAgain()
+    {
+        canMove = true;
     }
     public bool IsFollower()
     {

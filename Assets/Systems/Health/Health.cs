@@ -53,6 +53,11 @@ public class Health : MonoBehaviour
     {
         //Spawn effect on death
         Instantiate(deathFX,transform.position,quaternion.identity,null);
+        OnDeath();
         Destroy(gameObject);
+    }
+    public virtual void OnDeath()
+    {
+        
     }
 }

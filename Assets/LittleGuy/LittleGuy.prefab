@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4352503519045825013}
   - component: {fileID: 1225768865436885414}
   - component: {fileID: 4733475925868633755}
+  - component: {fileID: 6200538818264612612}
   m_Layer: 6
   m_Name: LittleGuy
   m_TagString: Untagged
@@ -217,8 +218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 50
-  HP: 50
+  MaxHP: 20
+  HP: 20
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &1225768865436885414
 MonoBehaviour:
@@ -247,8 +248,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   state: 0
-  attackCooldown: 0.75
-  attackDamage: 10
+  attackCooldown: 1
+  attackDamage: 5
   animationAttackDelay: 0.6
   target: {fileID: 0}
   targetInRange: 0
@@ -256,6 +257,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   detectionRadius: 0.5
+--- !u!114 &6200538818264612612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8047524324090106963}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9bd9fcafe435684191efb0babe728a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &5576831822760410129
 PrefabInstance:
   m_ObjectHideFlags: 0

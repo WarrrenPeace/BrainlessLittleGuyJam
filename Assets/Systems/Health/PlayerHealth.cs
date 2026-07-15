@@ -8,9 +8,10 @@ public class PlayerHealth : Health
         HealthSetup();
         HP = MaxHP;
     }
-    void OnPlayerDeath()
+    public override void OnDeath()
     {
         //End the run
         // Prompt player with death screen
+        GameManager.instance.PlayerDied();
     }
 }

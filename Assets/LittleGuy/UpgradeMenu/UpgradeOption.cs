@@ -3,8 +3,8 @@ using UnityEngine;
 public class UpgradeOption : MonoBehaviour
 {
     [SerializeField] int upgradeID;
-    public void OnSelectUpgrade()
+    public void OnSelectUpgrade(int type)
     {
-        UpgradeManager.instance.PlayerSelectedOptionFromUpgradeOption();
+        UpgradeManager.instance.PlayerSelectedOptionFromUpgradeOption(type);
     }
 }

@@ -6,6 +6,7 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] GameObject Menu;
     [SerializeField] GameObject UpgradeOptionButtonPrefab;
     [SerializeField] HappyGnome target;
+    [SerializeField] GameObject[] GnomeTypes;
     void Awake()
     {
         instance = this;
@@ -19,8 +20,9 @@ public class UpgradeManager : MonoBehaviour
         target = HG;
         Debug.Log(HG.name);
     }
-    public void PlayerSelectedOptionFromUpgradeOption()
+    public void PlayerSelectedOptionFromUpgradeOption(int type)
     {
-        
+        //Turn into this type of tower
+        Debug.Log(type);
     }
 }

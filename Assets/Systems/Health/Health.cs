@@ -60,4 +60,8 @@ public class Health : MonoBehaviour
     {
         
     }
+    public int QueryHealthValue()
+    {
+        return HP;
+    }
 }

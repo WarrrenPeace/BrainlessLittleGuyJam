@@ -76,41 +76,13 @@ public class Commander : MonoBehaviour
             UpgradeManager.instance.ToggleUpgradeMenu(true);
             UpgradeManager.instance.PopulateUpgradeOptionsForGnome(targetGnome.GetComponent<HappyGnome>());
             //Selecting option from upgrade menu will force gnome to begin "researching" aka learning the spell you picked
+
+            //UpdateCircleFormation(); //Update circle when removing or adding followers
         }
         else
         {
-            //If Gnome is already upgraded clicking them will toggle them to follow you or not to
-            //Meanwhile they will just idle and cast magic at nearby enemies
-            if(targetGnome.GetComponent<LittleGuyMovement>().IsFollower())
-            {
-                RemoveGnomeAsFollowerSlot(targetGnome);
-            }
-            else
-            {
-                AddNewGnomeToFollowers(targetGnome);
-            }
-            
+            return;
         }
-
-        
-
-        //if(targetGnome.GetComponent<LittleGuyMovement>().IsFollower())
-        //{
-        //    RemoveTowerAsFollowerSlot(targetGnome);
-        //}
-        //else
-        //{
-        //    if(Followers.Count + 1 <= MaxFollowers)
-        //    {
-        //        AddNewGnomeToFollowers(targetGnome);
-        //    }
-        //    else
-        //    {
-        //        //Tell tower to move to your location instead
-        //        targetGnome.GetComponent<LittleGuyMovement>()?.SetTargetLocation(transform.position);
-        //    }
-        //}
-        UpdateCircleFormation(); //Update circle when removing or adding followers
     }
     public void AddNewGnomeToFollowers(Transform Gnome)
     {
@@ -123,6 +95,8 @@ public class Commander : MonoBehaviour
         FollowPoints.Add(temp);
         targetTower.GetComponent<LittleGuyMovement>()?.SetFollower(temp);
         Followers.Add(targetTower);
+
+        UpdateCircleFormation(); //Update circle when removing or adding followers
     }
     public void ThisGnomeDied(Transform Gnome) {RemoveGnomeAsFollowerSlot(Gnome);}
     void RemoveGnomeAsFollowerSlot(Transform targetTower)

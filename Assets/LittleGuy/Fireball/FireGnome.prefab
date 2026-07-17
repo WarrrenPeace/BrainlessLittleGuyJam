@@ -13,6 +13,10 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: FindAndFollowPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: movementSpeedFollower
       value: 6
       objectReference: {fileID: 0}
@@ -22,11 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.577
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.412
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -80,7 +84,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: FireGnome
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4733475925868633755, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -106,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   state: 0
-  attackCooldown: 1
+  attackCooldown: 0.75
   attackDamage: 5
   animationAttackDelay: 0.6
   target: {fileID: 0}
@@ -114,4 +119,5 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  detectionRadius: 1
+  detectionRadius: 1.5
+  FX: {fileID: 6480145268063644839, guid: 0cdeb59d32c19e3418ccb5ec6880c3de, type: 3}

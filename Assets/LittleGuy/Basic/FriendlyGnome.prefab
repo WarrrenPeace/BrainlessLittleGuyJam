@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4733475925868633755}
   - component: {fileID: 6200538818264612612}
   m_Layer: 6
-  m_Name: LittleGuy
+  m_Name: FriendlyGnome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ Transform:
   m_GameObject: {fileID: 8047524324090106963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.4, y: 0.73, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -204,6 +204,7 @@ MonoBehaviour:
   IgnoreWhileFollowing:
     serializedVersion: 2
     m_Bits: 64
+  FindAndFollowPlayer: 0
 --- !u!114 &4352503519045825013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +243,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8047524324090106963}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14a769fdaed355a4795f61550ec1d8a1, type: 3}
   m_Name: 
@@ -269,6 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bd9fcafe435684191efb0babe728a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  hasBeenUpgraded: 0
+  hasFreeUpgrade: 0
+  indexOfSpellToLearn: 0
+  GnomeStatsPrefab: {fileID: 3503190421731451870, guid: 1247e04a32881914aabcb4501b416ccc, type: 3}
+  GS: {fileID: 0}
 --- !u!1001 &5576831822760410129
 PrefabInstance:
   m_ObjectHideFlags: 0

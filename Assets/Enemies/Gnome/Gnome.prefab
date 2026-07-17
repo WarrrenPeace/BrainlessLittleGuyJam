@@ -196,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 15
+  MaxHP: 7
   HP: 0
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &2851871034528463569

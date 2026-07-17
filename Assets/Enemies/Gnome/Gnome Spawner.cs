@@ -8,9 +8,13 @@ public class GoblinSpawner : MonoBehaviour
     [SerializeField] private float spawnFrequency = 0.5f;
     [SerializeField] private float spawnRadius;
     [SerializeField] private int amountForWave = 10;
+    [SerializeField] bool spawnOnStart = false;
     void Start()
     {
-        StartSpawnSequence();
+        if(spawnOnStart)
+        {
+            StartSpawnSequence();
+        }
     }
     void StartSpawnSequence()
     {

@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
     public static WaveManager instance;
-    public event Action WaveStarted;
-    public event Action WaveEnded;
+    public static event Action waveStarted;
+    public static event Action waveEnded;
     GoblinSpawner GS;
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] private float spawnDelay = 0.5f;
@@ -21,6 +22,10 @@ public class WaveManager : MonoBehaviour
     private bool isWaveTimerStarted = false;
     [SerializeField] private float setTimebetweenWaves = 4;
     private float timebetweenWaves;
+    [SerializeField] GameObject timer;
+    [SerializeField] TextMeshProUGUI timerTEXT;
+    float minuites;
+    float seconds;
 
     public List<GameObject> enemiesInCurrentWave;
     void Awake()
@@ -42,8 +47,21 @@ public class WaveManager : MonoBehaviour
         if(isWaveTimerStarted)
         {
             NextWaveTimer();
+            UpdateTimer();
+            if(!timer.activeInHierarchy)
+            {
+                timer.SetActive(true);
+            }
+        }
+        else
+        {
+            if(timer.activeInHierarchy)
+            {
+                timer.SetActive(false);
+            }
         }
     }
+    
     void NextWaveTimer()
     {
         if(timebetweenWaves > 0)
@@ -55,6 +73,17 @@ public class WaveManager : MonoBehaviour
             isWaveTimerStarted = false;
             StartWave();
         }
+    }
+    void UpdateTimer()
+    {
+        DisplayTime(timebetweenWaves);
+    }
+    void DisplayTime(float timeRemaning)
+    {
+        minuites = Mathf.FloorToInt(timeRemaning / 60);
+        seconds = Mathf.FloorToInt(timeRemaning % 60);
+
+        timerTEXT.text = string.Format("{0:00}:{1:00}", minuites, seconds);
     }
     void UpdateWaveProgress()
     {
@@ -86,11 +115,14 @@ public class WaveManager : MonoBehaviour
         else
         {
             amountForWave = UnityEngine.Random.Range(2,5) + (UnityEngine.Random.Range(1,2) * wave-5);
+            spawnFrequency = 2;
         }
         
     }
     void EndWave()
     {
+        waveEnded.Invoke();
+
         wave ++;
         CancelInvoke("UpdateWaveProgress");
         CancelInvoke("SpawnEnemiesOverTime");

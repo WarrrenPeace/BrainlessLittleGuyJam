@@ -18,6 +18,8 @@ public class FireMage : MonoBehaviour
     [SerializeField] private bool targetInRange = false;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private float detectionRadius = 1;
+    [Header("Effects")]
+    [SerializeField] GameObject FX;
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
@@ -134,7 +136,10 @@ public class FireMage : MonoBehaviour
     void AnimationAttackDelay()
     {
         if(target)
+        {
             target.GetComponent<Health>()?.ApplyDamage(attackDamage);
+            if(FX) {Instantiate(FX,target.position,Quaternion.identity,null);}
+        }
     }
     void CooldownTimer()
     {

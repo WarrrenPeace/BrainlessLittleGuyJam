@@ -18,6 +18,7 @@ public class LittleGuyMovement : MonoBehaviour
     [SerializeField] float desiredDistanceToTarget = 0.25f;
     [SerializeField] LayerMask IgnoreWhileFollowing;
     bool canMove = true;
+    [SerializeField] bool FindAndFollowPlayer = false;
 
     public void SetTargetLocation(Vector2 PosTarget)
     {
@@ -44,6 +45,11 @@ public class LittleGuyMovement : MonoBehaviour
         SR = GetComponent<SpriteRenderer>();
         AM = GetComponent<Animator>();
         target = transform.position;
+
+        if(FindAndFollowPlayer)
+        {
+            Commander.instance.AddNewGnomeToFollowers(gameObject.transform);
+        }
     }
     void Update()
     {

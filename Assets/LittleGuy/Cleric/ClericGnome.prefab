@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &451580035040793332
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: movementSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: FindAndFollowPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: movementSpeedFollower
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: IgnoreWhileFollowing.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1157173435772180452, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880967806057026875, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 3f2244a8610e9be4eb9b79caf5565bec, type: 2}
+    - target: {fileID: 4131480586307813453, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -5415303517535880888, guid: f0060777cdb61174c91ed06cdb435e4c, type: 3}
+    - target: {fileID: 5001436379015211345, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200538818264612612, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: hasBeenUpgraded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: m_Name
+      value: ClericGnome
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4733475925868633755, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7778457269746380795}
+  m_SourcePrefab: {fileID: 100100000, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+--- !u!1 &7632151224409065127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+  m_PrefabInstance: {fileID: 451580035040793332}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7778457269746380795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7632151224409065127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f129859d1cbaf41a259d78ebdbe238, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClericMage
+  state: 0
+  attackCooldown: 1.5
+  attackDamage: 5
+  animationAttackDelay: 0.6
+  target: {fileID: 0}
+  targetInRange: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  detectionRadius: 2
+  FX: {fileID: 350134595076092841, guid: 1c01e2a7ceac3ca46a0185a6adaa5f04, type: 3}

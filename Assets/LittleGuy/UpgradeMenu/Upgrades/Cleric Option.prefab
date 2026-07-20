@@ -92,6 +92,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cleric Option
       objectReference: {fileID: 0}
+    - target: {fileID: 1521485380003857538, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -205.3775
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521485380003857538, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -86.7608
+      objectReference: {fileID: 0}
     - target: {fileID: 1763777584146793215, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -102,15 +110,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_text
-      value: Cleric
+      value: CLERIC
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_fontSize
-      value: 23
+      value: 20.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_fontSizeBase
-      value: 23
+      value: 20.83
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 3128389111743021049, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

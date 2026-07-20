@@ -157,8 +157,8 @@ public class LittleGuyMovement : MonoBehaviour
     }
     void CantMoveAfterAttack()
     {
-        canMove = false;
-        Invoke("CanMoveAgain",0.15f);
+        //canMove = false;
+        //Invoke("CanMoveAgain",0.15f);
     }
     void CanMoveAgain()
     {

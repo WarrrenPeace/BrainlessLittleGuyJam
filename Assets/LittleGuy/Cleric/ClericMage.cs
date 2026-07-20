@@ -10,6 +10,7 @@ public class ClericMage : MonoBehaviour
     Animator AM;   
     LittleGuyMovement LGM;
 
+    [SerializeField] float setAttackCooldown = 1.5f;
     [SerializeField] float attackCooldown = 1.5f;
     [SerializeField] int attackDamage = 5;
     [SerializeField] float animationAttackDelay = 0.6f;
@@ -69,10 +70,14 @@ public class ClericMage : MonoBehaviour
             {
                 continue;
             }
-            if(hit.GetComponent<Health>()?.QueryHealthValue() < lowestHealth)
+            if(hit.GetComponent<Health>().QueryFullHealth()) {continue;}
+            else
             {
-                lowestHealth = hit.GetComponent<Health>().QueryHealthValue();
-                tempTarget = hit.transform;
+                if(hit.GetComponent<Health>()?.QueryHealthValue() < lowestHealth)
+                {
+                    lowestHealth = hit.GetComponent<Health>().QueryHealthValue();
+                    tempTarget = hit.transform;
+                }
             }
             //if(Vector2.Distance(transform.position,hit.transform.position) < closestDistance)
             //{
@@ -138,11 +143,13 @@ public class ClericMage : MonoBehaviour
         }
         else
         {
-            attackCooldown = 1.5f;
+            if(!target)
+            {
+                SetTarget(FindTarget()); //quickly find another target if current target dies
+            }
+            attackCooldown = setAttackCooldown;
             LGM?.RotateTowardsTarget(target.position);
             Invoke("AnimationAttackDelay",animationAttackDelay);
-            target = null;
-            
         }
     }
     void AnimationAttackDelay()
@@ -151,6 +158,8 @@ public class ClericMage : MonoBehaviour
         {
             target.GetComponent<Health>()?.HealDamage(attackDamage);
             if(FX) {Instantiate(FX,target.position,quaternion.identity,null);}
+
+            if(target.GetComponent<Health>().QueryFullHealth()) { target = null;}
         }   
     }
     void CooldownTimer()

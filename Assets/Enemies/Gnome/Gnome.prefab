@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 8968816541655847958}
   - component: {fileID: 2851871034528463569}
   - component: {fileID: 3337400890492058364}
+  - component: {fileID: 7533685727042491577}
   m_Layer: 7
   m_Name: Gnome
   m_TagString: Untagged
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 7
+  MaxHP: 15
   HP: 0
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &2851871034528463569
@@ -212,9 +213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   state: 0
-  movementSpeed: 6
+  movementSpeed: 4
   desiredDistanceToTarget: 0.25
-  attackCooldown: 0.75
+  attackCooldown: 0.65
   attackDamage: 5
   animationAttackDelay: 0.55
   target: {fileID: 0}
@@ -237,6 +238,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Damage_VFX
   onDamageVFXMat: {fileID: 2100000, guid: 2902547d15cfcf14cb18a13996aca2c8, type: 2}
   onDamageVFXDuration: 0.15
+--- !u!114 &7533685727042491577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7260576670012957310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c5ce7665cb58814e9547ccbe89db833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &6779689679904319068
 PrefabInstance:
   m_ObjectHideFlags: 0

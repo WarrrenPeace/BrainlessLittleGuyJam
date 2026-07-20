@@ -81,6 +81,14 @@ public class Commander : MonoBehaviour
         }
         else
         {
+            if(targetGnome.GetComponent<LittleGuyMovement>().IsFollower())
+            {
+                RemoveGnomeAsFollowerSlot(targetGnome);
+            }
+            else
+            {
+                AssignGnomeToFollowerSlot(targetGnome);
+            }
             return;
         }
     }
@@ -107,6 +115,14 @@ public class Commander : MonoBehaviour
         Followers.Remove(targetTower);
         targetTower.GetComponent<LittleGuyMovement>()?.SetFollower(null);
         targetTower.GetComponent<LittleGuyMovement>()?.SetTargetLocation(targetTower.transform.position);
+
+        UpdateCircleFormation();
+
+        //if(Followers.Count <= 0)
+        //{
+        //    //Gameover
+        //    GameManager.instance.PlayerDied();
+        //}
     }
 
 

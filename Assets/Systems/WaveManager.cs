@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,19 +12,32 @@ public class WaveManager : MonoBehaviour
     public static event Action waveEnded;
     GoblinSpawner GS;
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] private float spawnDelay = 0.5f;
     [SerializeField] private float spawnFrequency = 0.5f;
     [SerializeField] private float spawnRadius;
     private int amountForWave = 4;
+    private int enemiesSpawnedSoFar;
+    private int totalEnemiesForWave;
+    
 
-    [Header("Wave")]
+    [Header("Wave related")]
     [SerializeField] private int wave = 1;
+    
     private bool isWaveStarted = false;
     private bool isWaveTimerStarted = false;
     [SerializeField] private float setTimebetweenWaves = 4;
     private float timebetweenWaves;
-    [SerializeField] GameObject timer;
+    
+
+    
+
+    [Header("UI")]
+    [SerializeField] TextMeshProUGUI waveCOUNTER;
+    [SerializeField] GameObject timerOBJECT;
     [SerializeField] TextMeshProUGUI timerTEXT;
+    [SerializeField] GameObject waveProgressOBJECT;
+    [SerializeField] Slider waveProgressSLIDER;
+    
+    
     float minuites;
     float seconds;
 
@@ -48,16 +62,16 @@ public class WaveManager : MonoBehaviour
         {
             NextWaveTimer();
             UpdateTimer();
-            if(!timer.activeInHierarchy)
+            if(!timerOBJECT.activeInHierarchy)
             {
-                timer.SetActive(true);
+                timerOBJECT.SetActive(true);
             }
         }
         else
         {
-            if(timer.activeInHierarchy)
+            if(timerOBJECT.activeInHierarchy)
             {
-                timer.SetActive(false);
+                timerOBJECT.SetActive(false);
             }
         }
     }
@@ -88,6 +102,7 @@ public class WaveManager : MonoBehaviour
     void UpdateWaveProgress()
     {
         enemiesInCurrentWave.RemoveAll(item => item == null);
+        UpdateWaveProgressSlider();
         if(EnemiesLeftInWave() <= 0)
         {
             //End the wave
@@ -102,28 +117,64 @@ public class WaveManager : MonoBehaviour
 
         //Spawn enemies over timer or spawn all at once
         DetermineAmountForWave();
-        InvokeRepeating("SpawnEnemiesOverTime",spawnDelay,spawnFrequency);
+        totalEnemiesForWave = amountForWave;
+        SetUpWaveProgressSlider(true);
+        waveCOUNTER.text = wave.ToString();
         isWaveStarted = true;
-        InvokeRepeating("UpdateWaveProgress",1,1);
+        InvokeRepeating("SpawnEnemiesOverTime",0,spawnFrequency);
+        InvokeRepeating("UpdateWaveProgress",1,0.1f);
+        
+        
     }
     void DetermineAmountForWave()
     {
-        if(wave <= 5)
+        if(wave <= 3)
         {
-            amountForWave = UnityEngine.Random.Range(2,5);
+            amountForWave = UnityEngine.Random.Range(1,5);
+            spawnFrequency = 1; 
+            return;
+        }
+        else if (wave <= 35)
+        {
+            amountForWave = UnityEngine.Random.Range(3,6) + (UnityEngine.Random.Range(1,3) * wave-3);
+            spawnFrequency = Mathf.Lerp(1f, 0f, (wave - 1f) / 40f);
+
+            float normalized = Mathf.InverseLerp(1f, 40f, wave);
+            spawnFrequency = 1f - normalized;
+            return;
         }
         else
         {
-            amountForWave = UnityEngine.Random.Range(2,5) + (UnityEngine.Random.Range(1,2) * wave-5);
-            spawnFrequency = 2;
+            amountForWave = UnityEngine.Random.Range(7,10) + (UnityEngine.Random.Range(2,7) * wave-3);
+            spawnFrequency = 0.2f;
+        }
+    }
+    void SetUpWaveProgressSlider(bool active)
+    {
+        if(active)
+        {
+            waveProgressOBJECT.SetActive(true);
+            waveProgressSLIDER.maxValue = amountForWave;
+            waveProgressSLIDER.value = amountForWave;
+        }
+        else
+        {
+            waveProgressOBJECT.SetActive(false);
+            enemiesSpawnedSoFar = 0;
+            totalEnemiesForWave = 0;
         }
         
+    }
+    void UpdateWaveProgressSlider()
+    {
+        waveProgressSLIDER.value = totalEnemiesForWave - (enemiesSpawnedSoFar - EnemiesLeftInWave());
     }
     void EndWave()
     {
         waveEnded.Invoke();
 
         wave ++;
+        SetUpWaveProgressSlider(false);
         CancelInvoke("UpdateWaveProgress");
         CancelInvoke("SpawnEnemiesOverTime");
         timebetweenWaves = setTimebetweenWaves;
@@ -145,7 +196,9 @@ public class WaveManager : MonoBehaviour
     {
         if(enemy != null)
         {
+            enemiesSpawnedSoFar ++;
             enemiesInCurrentWave.Add(Instantiate(enemy,GetRandomPointAroundScreen(spawnRadius),quaternion.identity));
+            
         } 
     }
     Vector2 GetRandomPointAroundScreen(float radius)

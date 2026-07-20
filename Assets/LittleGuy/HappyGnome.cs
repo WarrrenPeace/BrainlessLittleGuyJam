@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class HappyGnome : MonoBehaviour
 {
+    [SerializeField] bool LearingSpell = false;
     [SerializeField] bool hasBeenUpgraded = false;
     [SerializeField] bool hasFreeUpgrade = false;
-    int wavesLeftForResearch;
+    [SerializeField] int wavesLeftForResearch;
     [SerializeField] private int indexOfSpellToLearn;
     [SerializeField] GameObject GnomeStatsPrefab;
     [SerializeField] GnomeStats GS;
@@ -39,27 +40,37 @@ public class HappyGnome : MonoBehaviour
         }
 
         
-        if(index == 0)
+        if(index == 0) //Need to change to some kind of Indexer? Ill have a dictionary with all types and how many turns it takes to learn
         {
-            Debug.Log("Learing Fireball");
+            Debug.Log("Learning Fireball");
             wavesLeftForResearch = 1;
         }
-        if(index == 1)
+        else if(index == 1)
         {
-            Debug.Log("Learing Heal");
-
+            Debug.Log("Learning Cleric");
             wavesLeftForResearch = 3;
+        }
+        else if(index == 2)
+        {
+            Debug.Log("Learning Druid");
+            wavesLeftForResearch = 2;
         }
         else
         {
             wavesLeftForResearch = 2;
         }
+
+        LearingSpell = true;
+        GS.UpdateLearningTimeLeft(wavesLeftForResearch);
     }
     public void CheckResearchProgress() //Called after a wave is cleared
     {
-        if(!hasBeenUpgraded)
+        
+        if(LearingSpell)
         {
-            wavesLeftForResearch --;
+            Debug.Log(name + " " + wavesLeftForResearch + " left");
+
+            wavesLeftForResearch -= 1;
             if(wavesLeftForResearch <= 0)
             {
                 UpgradeGnome();
@@ -75,6 +86,6 @@ public class HappyGnome : MonoBehaviour
         Destroy(gameObject);
         //Tell upgrademanager to spawn new tower at this location with index
         UpgradeManager.instance.UpgradeGnome(indexOfSpellToLearn,this);
-        Debug.Log(name + " Is upgrading to " + indexOfSpellToLearn);
+        //Debug.Log(name + " Is upgrading to " + indexOfSpellToLearn);
     }
 }

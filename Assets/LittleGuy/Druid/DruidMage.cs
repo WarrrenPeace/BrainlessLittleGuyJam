@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FireMage : MonoBehaviour
+public class DruidMage : MonoBehaviour
 {
     public enum State {Idle, Attack}
     public State state;
@@ -21,6 +21,8 @@ public class FireMage : MonoBehaviour
     [SerializeField] private float detectionRadius = 1;
     [Header("Effects")]
     [SerializeField] GameObject FX;
+
+    [SerializeField] float vineEffectCooldown = 3.1f;
     void Start()
     {
         SR = GetComponent<SpriteRenderer>();
@@ -66,6 +68,10 @@ public class FireMage : MonoBehaviour
         {
             if(Vector2.Distance(transform.position,hit.transform.position) < closestDistance)
             {
+                if(hit.GetComponent<EvilGnome>().QueryVines())
+                {
+                    continue; //Skip because gnome is already entangled
+                }
                 //New closer Target
                 closestDistance = Vector2.Distance(transform.position,hit.transform.position);
                 tempTarget = hit.transform;
@@ -141,7 +147,12 @@ public class FireMage : MonoBehaviour
         if(target)
         {
             target.GetComponent<Health>()?.ApplyDamage(attackDamage);
-            if(FX) {Instantiate(FX,target.position,Quaternion.identity,null);}
+            if(FX) {Instantiate(FX,target.position,Quaternion.identity,target);} //Vines are chilren of target!
+
+            //Druids apply vines to their target, stopping their movement for a duration of seconds
+            target.GetComponent<EvilGnome>().DruidAttackStopsMovement(vineEffectCooldown);
+            target = null;
+            //All gnomes have movement and attack logic in one script, when i add new gnome types ill need to fix this logic for druid
         }
     }
     void CooldownTimer()

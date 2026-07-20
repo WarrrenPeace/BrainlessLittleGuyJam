@@ -24,6 +24,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private float detectionRadius = 1;
     public bool targetPlayerInstantly = false;
     bool canMove = true;
+    bool canAttack = true;
+    bool inVines = false;
 
 
     
@@ -117,7 +119,7 @@ public class MeleeEnemy : MonoBehaviour
         else 
         {
             //Enemy is close to target
-            if(!targetInRange)
+            if(!targetInRange && canAttack)
             {
                 moveDir = Vector2.zero;
                 targetInRange = true;
@@ -224,6 +226,18 @@ public class MeleeEnemy : MonoBehaviour
     }
     void CanMoveAgain()
     {
+        if(!inVines) canMove = true;
+    }
+    public void EntangleInVines()
+    {
+        canMove = false;
+        canAttack = false;
+        inVines = true;
+    }
+    public void ReleaseVines()
+    {
         canMove = true;
+        canAttack = true;
+        inVines = false;
     }
 }

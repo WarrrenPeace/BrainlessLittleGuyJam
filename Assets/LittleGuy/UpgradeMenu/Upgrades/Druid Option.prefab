@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3952806904331739138
+--- !u!1001 &3353327621793319868
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -90,27 +90,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1152388874057727974, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_Name
-      value: Water Option
+      value: Druid Option
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521485380003857538, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -205.3277
+      objectReference: {fileID: 0}
+    - target: {fileID: 1521485380003857538, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -86.88347
       objectReference: {fileID: 0}
     - target: {fileID: 1763777584146793215, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4ccef857597410a47bb09392f969dd76, type: 3}
+      objectReference: {fileID: 21300000, guid: 121bf9b860c2f0f4b857112cecedec90, type: 3}
     - target: {fileID: 2433949704797382296, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: upgradeID
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_text
-      value: Water
+      value: 'DRUID
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_fontSize
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
       propertyPath: m_fontSizeBase
-      value: 22
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 3014741051007316527, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128389111743021049, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3128389111743021049, guid: 5fcdd8384f8e38546af1a4b33cc66ac8, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

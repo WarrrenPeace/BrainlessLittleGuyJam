@@ -64,4 +64,12 @@ public class Health : MonoBehaviour
     {
         return HP;
     }
+    public bool QueryFullHealth()
+    {
+        if(HP >= MaxHP)
+        {
+            return true;
+        }
+        else return false;
+    }
 }

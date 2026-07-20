@@ -219,8 +219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   SR: {fileID: 0}
   VFX: {fileID: 0}
-  MaxHP: 20
-  HP: 20
+  MaxHP: 25
+  HP: 25
   deathFX: {fileID: 7358815115739276115, guid: 80015e126aaf36a47b4931d8ae610387, type: 3}
 --- !u!114 &1225768865436885414
 MonoBehaviour:
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8047524324090106963}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14a769fdaed355a4795f61550ec1d8a1, type: 3}
   m_Name: 
@@ -257,7 +257,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  detectionRadius: 0.5
+  detectionRadius: 0.25
 --- !u!114 &6200538818264612612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,8 +270,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9bd9fcafe435684191efb0babe728a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  LearingSpell: 0
   hasBeenUpgraded: 0
   hasFreeUpgrade: 0
+  wavesLeftForResearch: 0
   indexOfSpellToLearn: 0
   GnomeStatsPrefab: {fileID: 3503190421731451870, guid: 1247e04a32881914aabcb4501b416ccc, type: 3}
   GS: {fileID: 0}

@@ -14,7 +14,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3626916397498700004, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
       propertyPath: m_SortingOrder
-      value: 10
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7878350319992209165, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,6 +68,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7878350319992209165, guid: c4d361d637e57a1498d2ee7c9704f590, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -81,4 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6961ae87c9476b43a5123069b402670, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyInTime
-  timer: 0.5
+  timer: 0.75

@@ -23,7 +23,6 @@ public class UpgradeManager : MonoBehaviour
     public void PopulateUpgradeOptionsForGnome(HappyGnome HG)
     {
         target = HG;
-        Debug.Log(HG.name + "Is target for upgrade manager");
     }
     public void PlayerSelectedOptionFromUpgradeOption(int type)
     {
@@ -33,7 +32,6 @@ public class UpgradeManager : MonoBehaviour
     }
     public void UpgradeGnome(int index, HappyGnome gnome)
     {
-        Debug.Log(index);
         Instantiate(GnomeTypes[index],gnome.transform.position,quaternion.identity,null);
     }
 }

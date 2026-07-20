@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &451580035040793332
+--- !u!1001 &4156535572869470937
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -67,11 +67,19 @@ PrefabInstance:
     - target: {fileID: 2880967806057026875, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 3f2244a8610e9be4eb9b79caf5565bec, type: 2}
+      objectReference: {fileID: 9100000, guid: 35f8deee4770aad49871806df54a2530, type: 2}
     - target: {fileID: 4131480586307813453, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -5415303517535880888, guid: f0060777cdb61174c91ed06cdb435e4c, type: 3}
+      objectReference: {fileID: -5415303517535880888, guid: 2122167a441a8164ba9882d309f98411, type: 3}
+    - target: {fileID: 4352503519045825013, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: HP
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4352503519045825013, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
+      propertyPath: MaxHP
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 5001436379015211345, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 64
@@ -82,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: m_Name
-      value: ClericGnome
+      value: DruidGnome
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4733475925868633755, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
@@ -91,33 +99,35 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7778457269746380795}
+      addedObject: {fileID: 6741533606457946849}
   m_SourcePrefab: {fileID: 100100000, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
---- !u!1 &7632151224409065127 stripped
+--- !u!1 &6197084654988430986 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8047524324090106963, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
-  m_PrefabInstance: {fileID: 451580035040793332}
+  m_PrefabInstance: {fileID: 4156535572869470937}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7778457269746380795
+--- !u!114 &6741533606457946849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7632151224409065127}
+  m_GameObject: {fileID: 6197084654988430986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67f129859d1cbaf41a259d78ebdbe238, type: 3}
+  m_Script: {fileID: 11500000, guid: 4113b7c4277dd14439f5e00f6f6ff200, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClericMage
+  m_EditorClassIdentifier: Assembly-CSharp::SageMage
   state: 0
-  attackCooldown: 1.5
-  attackDamage: 5
+  setAttackCooldown: 0.65
+  attackCooldown: 0.9
+  attackDamage: 1
   animationAttackDelay: 0.6
   target: {fileID: 0}
   targetInRange: 0
   targetLayer:
     serializedVersion: 2
-    m_Bits: 64
-  detectionRadius: 2
-  FX: {fileID: 350134595076092841, guid: 1c01e2a7ceac3ca46a0185a6adaa5f04, type: 3}
+    m_Bits: 128
+  detectionRadius: 3
+  FX: {fileID: 2632548225759399145, guid: c56fc708ba5874249ac06953ba3c12b0, type: 3}
+  vineEffectCooldown: 3.1

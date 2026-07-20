@@ -1,12 +1,14 @@
+using TMPro;
 using UnityEngine;
 
 public class GnomeStats : MonoBehaviour
 {
     [SerializeField] Transform target;
     [SerializeField] GameObject learningIcon;
+    [SerializeField] TextMeshProUGUI learningCount;
     void Start()
     {
-        transform.parent = GameObject.FindGameObjectWithTag("WorldCanvas").transform;
+        transform.SetParent(GameObject.FindGameObjectWithTag("WorldCanvas").transform);
     }
     public void SetTarget(Transform t)
     {
@@ -26,5 +28,13 @@ public class GnomeStats : MonoBehaviour
     public void ShowLearningIcon()
     {
         learningIcon.SetActive(true);
+    }
+    public void UpdateLearningTimeLeft(int amount)
+    {
+        if(learningCount)
+        {
+            learningCount.text = amount.ToString();
+        }
+        
     }
 }

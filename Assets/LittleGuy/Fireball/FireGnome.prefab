@@ -18,7 +18,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: movementSpeedFollower
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 841553157259818016, guid: 06cc59b0f2069ea4b9062de5e62cd11f, type: 3}
       propertyPath: IgnoreWhileFollowing.m_Bits
@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   state: 0
+  setAttackCooldown: 0.75
   attackCooldown: 0.75
   attackDamage: 5
   animationAttackDelay: 0.6
@@ -119,5 +120,5 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 128
-  detectionRadius: 1.5
+  detectionRadius: 2.25
   FX: {fileID: 6480145268063644839, guid: 0cdeb59d32c19e3418ccb5ec6880c3de, type: 3}
